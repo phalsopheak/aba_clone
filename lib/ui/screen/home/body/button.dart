@@ -1,3 +1,4 @@
+import 'package:aba_clone/common/constants/app_color.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -10,7 +11,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(left: 5, top: 5),
-      color: Colors.orangeAccent,
+      color: AppColor.smallButtonBackground,
       child: IconButton(
         icon: icon,
         onPressed: onPressed,

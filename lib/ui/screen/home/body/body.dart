@@ -5,6 +5,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.orangeAccent,
       child: Column(
         children: [
           CustomButton(

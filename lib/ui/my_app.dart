@@ -17,6 +17,12 @@ class MyApp extends StatelessWidget {
           transition: Transition.rightToLeft,
           binding: HomeBinding(),
         ),
+        GetPage(
+          name: RouteName.contactUs,
+          page: () => HomeScreen(),
+          transition: Transition.rightToLeft,
+          binding: HomeBinding(),
+        ),
       ],
     );
   }

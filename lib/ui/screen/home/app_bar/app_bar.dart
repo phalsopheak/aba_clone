@@ -7,13 +7,14 @@ import 'package:get/get.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final HomeController homeController = Get.find();
   final String title;
-
+  final List<Icon> listIcon;
   @override
   final Size preferredSize;
 
   CustomAppBar({
     @required this.title,
-  }) : preferredSize = Size.fromHeight(200);
+    this.listIcon,
+  }) : preferredSize = Size.fromHeight(45);
 
   @override
   Widget build(BuildContext context) {
@@ -21,25 +22,41 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: Container(
         color: AppColor.headerBackground,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(
-              width: 5,
+            Row(
+              children: [
+                SizedBox(
+                  width: 5,
+                ),
+                IconButton(
+                  icon: Icon(Icons.menu),
+                  onPressed: () {
+                    homeController.scaffoldState.currentState.openDrawer();
+                  },
+                ),
+                Text(title),
+              ],
             ),
-            IconButton(
-              icon: Icon(Icons.menu),
-              onPressed: () {
-                homeController.scaffoldState.currentState.openDrawer();
-              },
-            ),
-            Text(title),
-            IconItem(
-              icon: Icon(Icons.notifications),
-              onPressed: () {},
-            ),
-            IconItem(
-              icon: Icon(Icons.notifications),
-              onPressed: () {},
-            ),
+            Row(
+              children: [
+                listIcon == null
+                    ? SizedBox.shrink()
+                    : Container(
+                        child: Row(
+                          children: listIcon.map((x) {
+                            return Padding(
+                              padding: EdgeInsets.all(0),
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: x,
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+              ],
+            )
           ],
         ),
       ),

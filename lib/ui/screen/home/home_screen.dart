@@ -15,6 +15,11 @@ class HomeScreen extends StatelessWidget {
       key: homeController.scaffoldState,
       appBar: CustomAppBar(
         title: 'ABA Test',
+        listIcon: [
+          Icon(Icons.notifications),
+          Icon(Icons.call),
+          Icon(Icons.call)
+        ],
       ),
       drawer: CustomDrawer(),
       body: Body(),

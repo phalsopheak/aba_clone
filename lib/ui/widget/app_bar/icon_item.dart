@@ -7,10 +7,10 @@ class IconItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: IconButton(
-        onPressed: onPressed,
-        icon: icon,
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        child: icon,
       ),
     );
   }

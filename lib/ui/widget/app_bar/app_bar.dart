@@ -1,25 +1,31 @@
 import 'package:aba_clone/common/constants/app_color.dart';
 import 'package:aba_clone/ui/controllers/home_controller.dart';
-import 'package:aba_clone/ui/screen/home/app_bar/icon_item.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final HomeController homeController = Get.find();
   final String title;
-  final List<Icon> listIcon;
+  final List<Widget> listWidget;
+  final Icon leftIcon;
+  final Function leftIconPressed;
+
   @override
   final Size preferredSize;
 
   CustomAppBar({
     @required this.title,
-    this.listIcon,
-  }) : preferredSize = Size.fromHeight(45);
+    @required this.leftIcon,
+    this.leftIconPressed,
+    this.listWidget,
+  }) : preferredSize = Size.fromHeight(50);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
+        height: double.infinity,
         color: AppColor.headerBackground,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,21 +36,23 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   width: 5,
                 ),
                 IconButton(
-                  icon: Icon(Icons.menu),
-                  onPressed: () {
-                    homeController.scaffoldState.currentState.openDrawer();
-                  },
+                  icon: leftIcon,
+                  onPressed: leftIconPressed,
+                  color: Colors.white,
                 ),
-                Text(title),
+                Text(
+                  title,
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
               ],
             ),
             Row(
               children: [
-                listIcon == null
+                listWidget == null
                     ? SizedBox.shrink()
                     : Container(
                         child: Row(
-                          children: listIcon.map((x) {
+                          children: listWidget.map((x) {
                             return Padding(
                               padding: EdgeInsets.all(0),
                               child: IconButton(
